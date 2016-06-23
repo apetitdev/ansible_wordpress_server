@@ -1,0 +1,19 @@
+---
+- name: install apache
+  sudo: yes
+  apt: name={{ item }} state=present
+  with_items:
+    - apache2
+    - apache2-utils
+  tags: apache
+
+- name: upload good apache configuration file
+  sudo: yes
+  template: src=apache.conf.j2 dest=/etc/apache2/apache2.conf
+  tags: apache
+
+
+- name: create apache monit file
+  sudo: yes
+  template: src=monit.apache.conf.j2 dest=/etc/monit/conf.d/apache.conf owner=root mode=0600
+  tags: apache

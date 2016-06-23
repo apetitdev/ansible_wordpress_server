@@ -1,0 +1,3 @@
+---
+# This is mainly for capistrano later since sudo is no longer available in v3
+- include: mysql.yml

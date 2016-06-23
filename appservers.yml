@@ -1,0 +1,6 @@
+---
+- name: Configure App Servers
+  hosts: appservers
+  user: deployer
+  roles:
+    - web

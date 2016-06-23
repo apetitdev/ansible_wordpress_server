@@ -1,0 +1,30 @@
+---
+# no need, first this repo doesn't exist any longer second one the repo is already in every source.list of every recent version of ubuntu
+# - name: add postgresql ppa
+#   sudo: yes
+#   apt_repository: repo='ppa:pitti/postgresql' state=present update_cache=yes
+- name: update apt-get 
+  sudo: yes
+  apt: update_cache=yes upgrade=safe force=yes
+
+- name: install mysql libraries
+  sudo: yes
+  apt: name={{item}} state=present force=yes
+  with_items:
+  - mysql-server
+  - mysql-client
+  - php5-mysql
+  - php5
+  - libmysqlclient-dev
+  - phpmyadmin
+
+- name: Change the root password
+  command: 'mysql -u root -h {{ mysql_host }} --execute="{{ mysql_change_password }}"'
+  tags: create website database
+  ignore_errors: true
+
+- name: create database the application
+  command: 'mysql -u root -h {{ mysql_host }} --password={{ mysql_root_password }} --execute="CREATE DATABASE {{ mysql_db_name }}"'
+  tags: create website database
+  ignore_errors: true
+  notify: restart mysql
