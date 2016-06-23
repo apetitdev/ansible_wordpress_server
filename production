@@ -25,7 +25,7 @@ pubsubservers
 rails_env=production
 application_name=investor_relations
 
-mysql_root_user=root
-mysql_root_password=Password1!
-mysql_host=localhost
-mysql_db_name=eic_ir
+mysql_root_user=
+mysql_root_password=
+mysql_host=
+mysql_db_name=
