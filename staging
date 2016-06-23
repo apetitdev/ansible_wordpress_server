@@ -23,7 +23,7 @@ pubsubservers
 
 [rails:vars]
 rails_env=staging
-application_name=investor_relations
-php_admin_user=root
-mysql_root_user=root
-mysql_root_password=Password1!
+application_name=
+php_admin_user=
+mysql_root_user=
+mysql_root_password=
